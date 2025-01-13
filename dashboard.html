@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Analytics Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="container my-4">
+            <h1 class="text-center">EV Analytics Dashboard</h1>
+            <div class="row">
+                <!-- Top EV Manufacturers -->
+                <div class="col-md-6">
+                    <h3 class="text-center">Top EV Manufacturers</h3>
+                    <canvas id="manufacturersChart"></canvas>
+                </div>
+                <!-- Top EV Models -->
+                <div class="col-md-6">
+                    <h3 class="text-center">Top EV Models</h3>
+                    <canvas id="modelsChart"></canvas>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <!-- Registrations by County -->
+                <div class="col-md-6">
+                    <h3 class="text-center">Registrations by County</h3>
+                    <canvas id="countyChart"></canvas>
+                </div>
+                <!-- Yearly Trends -->
+                <div class="col-md-6">
+                    <h3 class="text-center">Yearly Registration Trends</h3>
+                    <canvas id="yearlyChart"></canvas>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <!-- Electric Range -->
+                <div class="col-md-6">
+                    <h3 class="text-center">Electric Range Distribution</h3>
+                    <canvas id="rangeChart"></canvas>
+                </div>
+                <!-- MSRP Distribution -->
+                <div class="col-md-6">
+                    <h3 class="text-center">MSRP Distribution</h3>
+                    <canvas id="msrpChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        // Top EV Manufacturers
+        const manufacturersCtx = $('#manufacturersChart');
+        new Chart(manufacturersCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Tesla', 'Nissan', 'Chevrolet', 'BMW', 'Ford'],
+                datasets: [{
+                    label: 'Number of Registrations',
+                    data: [23127, 3909, 3543, 2214, 2028],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Top EV Models
+        const modelsCtx = $('#modelsChart');
+        new Chart(modelsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Model Y', 'Model 3', 'Leaf', 'Model S', 'Bolt EV'],
+                datasets: [{
+                    label: 'Number of Registrations',
+                    data: [10389, 8808, 3770, 2150, 1828],
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Registrations by County
+        const countyCtx = $('#countyChart');
+        new Chart(countyCtx, {
+            type: 'pie',
+            data: {
+                labels: ['King', 'Clark', 'Snohomish', 'Kitsap', 'Thurston'],
+                datasets: [{
+                    label: 'Registrations',
+                    data: [37502, 4838, 2553, 2154, 1524],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+
+        // Yearly Trends
+        const yearlyCtx = $('#yearlyChart');
+        new Chart(yearlyCtx, {
+            type: 'line',
+            data: {
+                labels: [1998, 2000, 2002, 2008, 2010],
+                datasets: [{
+                    label: 'Yearly Registrations',
+                    data: [1, 1, 1, 2, 10],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    tension: 0.3,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    });
+</script>
+
+</html>
